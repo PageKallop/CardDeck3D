@@ -31,7 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARImageTrackingConfiguration()
         //creates reference image
-        if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "ClubCard", bundle: Bundle.main) {
+        if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "DeckCards", bundle: Bundle.main) {
            //identify image to track
             configuration.trackingImages = imageToTrack
             //identify number of crads 
@@ -52,6 +52,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     // MARK: - ARSCNViewDelegate
+    //creates node to anchor to
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        
+        let node = SCNNode()
+        
+        if let imageAnchor = anchor as? ARImageAnchor {
+            let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
+            
+            plane.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.5)
+            
+            let planNode = SCNNode(geometry: plane)
+            
+            planNode.eulerAngles.x = -.pi / 2 
+            
+            node.addChildNode(planNode)
+        }
+        
+        return node
+    }
     
 
 }
