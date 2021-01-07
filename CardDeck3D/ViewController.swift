@@ -37,7 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
            //identify image to track
             configuration.trackingImages = imageToTrack
             //identify number of crads 
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("Image Added")
         }
@@ -60,6 +60,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let node = SCNNode()
         
         if let imageAnchor = anchor as? ARImageAnchor {
+            
+            
+            
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
             plane.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.5)
@@ -69,6 +72,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             planNode.eulerAngles.x = -.pi / 2 
             
             node.addChildNode(planNode)
+            
+            if imageAnchor.referenceImage.name == "ClubCard" {
             //add 3D model to scene
             if let pokeScene = SCNScene(named: "art.scnassets/pm0768_00_fi copy.scn") {
                 
@@ -80,7 +85,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
+            
+            if imageAnchor.referenceImage.name == "Joker" {
+            //add 3D model to scene
+            if let pokeScene = SCNScene(named: "art.scnassets/Oddish copy.scn") {
+                
+                if  let pokeNode = pokeScene.rootNode.childNodes.first {
+                    
+                    pokeNode.eulerAngles.x = .pi / 2
+                    
+                    planNode.addChildNode(pokeNode)
+                }
+            }
+        }
         
+    }
         return node
     }
     
