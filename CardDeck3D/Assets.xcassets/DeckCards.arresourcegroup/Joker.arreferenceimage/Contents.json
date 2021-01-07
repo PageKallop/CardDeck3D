@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "Joker.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "unit" : "inches",
+    "width" : 2.4500000000000002
+  }
+}

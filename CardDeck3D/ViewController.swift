@@ -21,6 +21,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        //lights 3d scene
+        sceneView.autoenablesDefaultLighting = true
         
     
     }
@@ -67,6 +69,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             planNode.eulerAngles.x = -.pi / 2 
             
             node.addChildNode(planNode)
+            //add 3D model to scene
+            if let pokeScene = SCNScene(named: "art.scnassets/pm0768_00_fi copy.scn") {
+                
+                if  let pokeNode = pokeScene.rootNode.childNodes.first {
+                    
+                    pokeNode.eulerAngles.x = .pi / 2
+                    
+                    planNode.addChildNode(pokeNode)
+                }
+            }
         }
         
         return node

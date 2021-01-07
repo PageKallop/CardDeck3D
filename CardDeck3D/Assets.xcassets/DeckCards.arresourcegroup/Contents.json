@@ -6,6 +6,9 @@
   "resources" : [
     {
       "filename" : "ClubCard.arreferenceimage"
+    },
+    {
+      "filename" : "Joker.arreferenceimage"
     }
   ]
 }
